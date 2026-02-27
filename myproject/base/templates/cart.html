@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="cart-wrapper">
+    <h2 class="cart-heading">Your Cart</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <h4 class="status-msg">{{ message }}</h4>
+        {% endfor %}
+    {% endif %}
+
+    {% if data %}
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Venue</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td class="event-name">{{ i.event.title }}</td>
+                <td>{{ i.event.venue }}</td>
+                <td>₹{{ i.event.ticket_price }}</td>
+                <td>{{ i.quantity }}</td>
+                <td class="price-total">₹{{ i.total_price }}</td>
+                <td>
+                    <a href="{% url 'cadd' i.id %}" class="qty-btn">+</a>
+                    <a href="{% url 'csub' i.id %}" class="qty-btn">-</a>
+                    <a href="{% url 'remove' i.id %}" class="remove-btn">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="cart-footer">
+        <h3>Total Amount: ₹{{ TA }}</h3>
+        <a href="{% url 'payment' %}" class="pay-button">Proceed to Payment</a>
+    </div>
+
+    {% else %}
+    <div class="empty-row">
+        <h3>Your cart is empty</h3>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

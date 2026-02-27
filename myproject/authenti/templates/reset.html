@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="center-reset">
+    <div class="reset-card">
+        <h2 class="page-title">Welcome to the Reset Page</h2>
+
+        {% if wrong %}
+        <h1 class="status-msg">Entered password is wrong</h1>
+        {% endif %}
+
+        {% if same %}
+        <h1 class="status-msg">The new password cannot be the same as the old password</h1>
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <!-- Username (readonly) -->
+            <div class="form-group">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" value="{{ request.user }}" readonly class="form-input">
+            </div>
+
+            <!-- Password input -->
+            {% if newpass %}
+            <div class="form-group">
+                <label for="newpass" class="form-label">Enter your new password</label>
+                <input type="text" id="newpass" name="newpass" placeholder="New password" class="form-input">
+            </div>
+            {% else %}
+            <div class="form-group">
+                <label for="oldpass" class="form-label">Enter your old password</label>
+                <input type="text" id="oldpass" name="oldpass" placeholder="Old password" class="form-input">
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1 style="   text-align: center;
+    font-size: 25px;
+    color: grey; /* green color */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    font-weight: bold;   ">   Welcome to the Home Page  </h1>
+{% if nomatch %}
+<center><h1 style="color: red;">Events are not found</h1></center>
+{% endif %}
+
+
+
+<div class="category">
+
+    {% for i in category %}
+    <form action="" method="GET">
+        <input type="submit" value="{{ i }}" name="cat" class="category-btn">
+    </form>
+    {% endfor %}
+
+    <a href="{% url 'home' %}" class="all-events-btn">All Events</a>
+
+</div>
+
+<div class="cards-container">
+    {% for event in events %}
+    <div class="card">
+        <h3>{{ event.title }}</h3>
+        <p>📍 {{ event.venue }}</p>
+        <p>📅 {{ event.event_date }}</p>
+
+        <div class="card-bottom">
+            <span class="price">₹ {{ event.ticket_price }}</span>
+            <a href="{% url 'book' event.id %}" class="buy-btn">Book Now</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

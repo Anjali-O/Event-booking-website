@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block content %}
+<h1>Register here,</h1>
+<center>
+    {% if status %}
+    <h2 class="status-msg">{{status}}</h2>
+    {% endif %}
+    <div class="register-card">
+        <form class="register-form" action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="first_name" class="form-label">First Name:</label>
+                <input type="text" id="first_name" name="first_name" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label for="last_name" class="form-label">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" id="username" name="username" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" name="password" class="form-input">
+            </div>
+
+            <button type="submit" class="btn-submit">Register</button>
+        </form>
+    </div>
+</center>
+{% endblock %}

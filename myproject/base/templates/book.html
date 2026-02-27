@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Details of the Event</h1>
+
+{% if noseats %}
+    <p style="color:red; font-weight:bold; text-align:center; margin-bottom:10px;">
+        Sorry, no seats are available for this event.
+    </p>
+{% endif %}
+
+{% if limit %}
+    <p style="color:red; font-weight:bold; text-align:center; margin-bottom:10px;">
+        You cannot add more tickets than available seats.
+    </p>
+{% endif %}
+
+<div class="book-wrapper">
+
+    <div class="book-box">
+        <h2>{{ data.title }}</h2>
+
+        <p>📍 {{ data.venue }}</p>
+        <p>📅 {{ data.event_date }}</p>
+        <p>{{ data.description }}</p>
+        <p>{{ data.location }}</p>
+        <p>Remaining seats: {{ data.total_seats }}</p>
+
+        <div class="book-footer">
+            <span class="book-price">₹ {{ data.ticket_price }}</span>
+            <a href="{% url 'addtocart' data.id %}" class="book-btn">
+                Add to Cart
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

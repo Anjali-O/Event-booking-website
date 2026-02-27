@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="success-wrapper">
+
+    <div class="success-card">
+
+        <div class="success-icon">✔</div>
+
+        <h2>Payment Successful!</h2>
+        <p>Your payment has been completed successfully.</p>
+        <p>You can now generate your event ticket.</p>
+
+        <a href="{% url 'booked' %}" class="generate-btn">
+            View Ticket
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="center-profile">
+    <div class="profile-card">
+        <h2 class="page-title">Profile Page</h2>
+
+        <h2 class="info">
+            Verified: {{ request.user.is_authenticated }} <br>
+            First Name: {{ request.user.first_name }} <br>
+            Last Name: {{ request.user.last_name }} <br>
+            Username: {{ request.user.username }} <br>
+            <a href="{% url 'reset' %}">Reset Password</a>
+        </h2>
+    </div>
+</div>
+
+{% endblock %}

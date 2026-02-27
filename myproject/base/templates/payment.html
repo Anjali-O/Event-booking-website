@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="payment-wrapper">
+    <div class="payment-card">
+        <h2>UPI Payment</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <label for="upi">Enter UPI ID</label>
+            <input type="text" name="upi" placeholder="example@upi" required>
+
+            <button class="button" type="submit">Pay Now</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

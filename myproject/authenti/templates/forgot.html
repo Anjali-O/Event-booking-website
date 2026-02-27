@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="center-forgot">
+    <div class="forgot-card">
+        <h2 class="page-title">Forgot Password</h2>
+
+        {% if error %}
+        <h2 class="status-msg">User does not exist</h2>
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username">
+            </div>
+
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

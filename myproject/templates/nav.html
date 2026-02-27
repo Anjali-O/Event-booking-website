@@ -1,0 +1,30 @@
+<nav class="navbar">
+    <div class="logo">
+        <a href="/">EventBook</a>
+    </div>
+
+    <ul class="nav-links">
+        <form action="">
+            <input type="text" name="q" placeholder="Search by place or event">
+            <input type="submit" value="Search">
+        </form>
+
+
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+        <li><a href="{% url 'aboutus' %}">About us</a></li>
+
+        
+
+
+
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'booked' %}">Bookings</a></li>
+            <li><a href="{% url 'cart' %}">Cart({{cartproducts_count}})</a></li>
+            <li><a href="{% url 'profile' %}">Hello, {{ user.username }}</a></li>
+            <li><a href="{% url 'logout_' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login_' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</nav>

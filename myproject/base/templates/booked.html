@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="ticket-container">
+{% for i in data %}
+<div class="ticket" id="ticket{{ forloop.counter }}">
+    
+    <div class="ticket-header">
+        <h2>{{ i.event.title }}</h2>
+        <small>{{ i.event.venue }}</small>
+    </div>
+
+    <div class="ticket-body">
+        <p><strong>Date:</strong> {{ i.event.event_date }}</p>
+        <p><strong>Tickets:</strong> {{ i.quantity }}</p>
+        <p><strong>Total Paid:</strong> ₹{{ i.total_price }}</p>
+
+        <div class="seats">
+            <strong>Seat Numbers:</strong><br>
+
+            {% if i.seat_numbers %}
+                {% for seat in i.seat_numbers %}
+                    <span class="seat-badge">Seat {{ seat }}</span>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                <span>No seats assigned</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <button class="download-btn"
+        onclick="downloadTicket('ticket{{ forloop.counter }}')">
+        Download Ticket
+    </button>
+
+</div>
+
+{% empty %}
+<div style="width:100%; text-align:center; margin-top:80px;">
+    <h2>No bookings present</h2>
+    <p>You have not booked any events yet.</p>
+</div>
+{% endfor %}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="{% static 'js/ticket.js' %}"></script>
+{% endblock %}
